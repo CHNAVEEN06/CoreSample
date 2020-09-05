@@ -13,19 +13,14 @@ namespace WebApplication1.Controllers
         {
             this._emprepo = _emprepo;
         }
+
         public IActionResult Index()
         {
             IEnumerable<Models.Employee> ie = _emprepo.GetEmployees();
-
-            //TempData["ie"] = ie;
-            //TempData.Keep();
             return View(ie);
         }
 
-
-
-
-
+                     
         public IActionResult Create()
         {
             return View();
@@ -52,15 +47,14 @@ namespace WebApplication1.Controllers
         {
             if (employee != null)
                 _emprepo.UpdateEmployee(employee);
-            return RedirectToAction("Employee", "Index");
+            return RedirectToAction("Index", "Employee");
         }
 
 
-        [HttpPost]
-        public IActionResult Delete(int Eno)
+        public IActionResult Delete(int eno)
         {
-            if (Eno != 0)
-                _emprepo.DeleteEmployee(Eno);
+            if (eno != 0)
+                _emprepo.DeleteEmployee(eno);
             return RedirectToAction("Index", "Employee");
         }
 

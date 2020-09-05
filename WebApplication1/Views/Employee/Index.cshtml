@@ -4,26 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-@*@using (Html.BeginForm("Index", "Employee", FormMethod.Post))
-    {
-
-        <br />
-        <table border="1" cellpadding="1" cellspacing="1">
-            <tr>
-                <th>Eno</th>
-                <th>Ename</th>
-                <th>Salary</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Eno</td>
-                    <td>@item.Ename</td>
-                    <td>@item.Salary</td>
-                </tr>
-            }
-        </table>
-    }*@
 
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
@@ -52,8 +32,9 @@
                         @Html.DisplayFor(modelItem => item.Salary)
                     </td>
                     <td>
-                        <a asp-action="Update" asp-route-id="@item.Eno">Edit</a> |
-                        <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Eno">Delete</a>
+                        @Html.ActionLink("Edit", "Update", new { eno = item.Eno })|
+                        @Html.ActionLink("Delete", "Delete", new { eno = item.Eno })
+
                     </td>
                 </tr>
             }
