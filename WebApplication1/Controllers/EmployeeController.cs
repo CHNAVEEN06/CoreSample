@@ -13,13 +13,11 @@ namespace WebApplication1.Controllers
         {
             this._emprepo = _emprepo;
         }
-
         public IActionResult Index()
         {
             IEnumerable<Models.Employee> ie = _emprepo.GetEmployees();
             return View(ie);
         }
-
                      
         public IActionResult Create()
         {
@@ -34,7 +32,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index", "Employee");
 
         }
-
         public IActionResult Update(int eno)
         {
             Employee employee = new Employee();
@@ -49,8 +46,6 @@ namespace WebApplication1.Controllers
                 _emprepo.UpdateEmployee(employee);
             return RedirectToAction("Index", "Employee");
         }
-
-
         public IActionResult Delete(int eno)
         {
             if (eno != 0)
